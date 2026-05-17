@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>분석도구 - 소방안전 빅데이터 플랫폼</title>
+    <link rel="stylesheet" href="../resources/css/common.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
+</head>
+
+<body class="page">
+    <div id="skip-nav"><a href="#container">본문 바로가기</a></div>
+
+    <!-- 헤더 -->
+    <header id="siteHeader" class="header">
+        <div class="header_inner">
+            <h1 class="logo">
+                <a href="./dashboard.html" aria-label="소방안전 빅데이터 플랫폼 분석도구 메인으로 이동">
+                    <span class="logo_mark" aria-hidden="true">119</span>
+                    <span class="logo_text">
+                        <strong>소방안전 빅데이터 플랫폼</strong>
+                        <em>KOREA FIRE SAFETY BIG DATA PLATFORM</em>
+                    </span>
+                </a>
+            </h1>
+            <p class="service_name">분석도구</p>
+            <nav class="nav pc_nav" aria-label="주요 메뉴">
+                <ul class="gnb_wrap">
+                    <li class="gnb_item"><a href="#" class="gnb_link">대시보드</a></li>
+                    <li class="gnb_item"><a href="#" class="gnb_link" aria-current="page">보유 데이터셋</a></li>
+                    <li class="gnb_item"><a href="#" class="gnb_link">데이터융합</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="container" class="container" tabindex="-1">
+        <section class="workspace" aria-labelledby="dashboardTitle">
+            <h2 id="dashboardTitle" class="sr-only">보유 데이터셋 선택 대시보드</h2>
+
+            <!-- 좌 -->
+            <aside class="dataset_panel" aria-labelledby="datasetPanelTitle">
+                <h3 id="datasetPanelTitle" class="panel_title">보유 데이터셋</h3>
+
+                <form class="search" action="#" method="get">
+                    <label for="datasetKeyword" class="sr-only">데이터셋 검색어</label>
+                    <input type="search" id="datasetKeyword" name="keyword" placeholder="검색어 입력">
+                    <button type="submit" class="search_btn" aria-label="검색"></button>
+                </form>
+
+                <p class="count">총 <strong>4,624</strong>건</p>
+
+                <div class="dataset_list" role="list" aria-label="보유 데이터셋 목록">
+                    <a href="#" class="dataset_item is_active" role="listitem" aria-current="true">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                    <a href="#" class="dataset_item" role="listitem">소방대상물 현황_2023_전국.csv</a>
+                </div>
+
+                <nav class="pagination" aria-label="데이터셋 목록 페이지">
+                    <a href="#" class="page_btn page_first" aria-label="처음 페이지로 이동"></a>
+                    <a href="#" class="page_btn page_prev" aria-label="이전 페이지로 이동"></a>
+                    <strong class="page_num" aria-current="page">1</strong>
+                    <a href="#" class="page_num">2</a>
+                    <a href="#" class="page_num">3</a>
+                    <a href="#" class="page_btn page_next" aria-label="다음 페이지로 이동"></a>
+                    <a href="#" class="page_btn page_last" aria-label="마지막 페이지로 이동"></a>
+                </nav>
+            </aside>
+
+            <!-- 우 -->
+            <section class="content" aria-labelledby="dashboardContentTitle">
+                <div class="guide_bar">
+                    <button type="button" class="back_btn" aria-label="이전 화면으로 이동"></button>
+                    <p>시각화할 데이터를 선택해 주세요.</p>
+                </div>
+
+                <div class="empty_view">
+                    <h3 id="dashboardContentTitle" class="sr-only">시각화 초기 화면</h3>
+                    <div class="empty_graphic" aria-hidden="true">
+                        <span class="paper paper_01"></span>
+                        <span class="paper paper_02"></span>
+                        <span class="paper paper_03"></span>
+                        <span class="magnifier"></span>
+                        <span class="check_badge"></span>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer_inner">
+            <div class="footer_logo" aria-hidden="true">
+                <span class="footer_mark">119</span>
+                <strong>소방청</strong>
+            </div>
+            <p class="copy">COPYRIGHT ⓒ National Fire Agency All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

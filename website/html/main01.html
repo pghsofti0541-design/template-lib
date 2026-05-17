@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>메인 01 - 헤더 오버레이</title>
+    <link rel="stylesheet" href="../resources/css/plugin/swiper.min.css">
+    <link rel="stylesheet" href="../resources/css/common.css">
+
+    <script src="../resources/js/plugin/jquery-3.7.1.min.js" defer></script>
+    <script src="../resources/js/plugin/swiper.min.js" defer></script>
+    <script src="../resources/js/common.js" defer></script>
+
+    <link rel="stylesheet" href="../resources/css/layout01.css">
+    <script src="../resources/js/layout01.js" defer></script>
+    <script src="../resources/js/main01.js" defer></script>
+</head>
+
+<body>
+    <div id="skip-nav"><a href="#container">본문 바로가기</a></div>
+    <header id="siteHeader" class="header">
+        <div class="header_inner">
+            <h1 class="logo">
+                <a href="#" aria-label="홈으로 이동">
+                    <img src="../resources/images/common/logo_header_light.svg"
+                        data-light-src="../resources/images/common/logo_header_light.svg"
+                        data-dark-src="../resources/images/common/logo_header_dark.svg" alt="" width="160"
+                        height="36">
+                    <span class="sr-only">사이트 로고</span>
+                </a>
+            </h1>
+            <nav class="pc_nav" aria-label="주요 메뉴">
+                <ul class="gnb_wrap">
+                    <li class="gnb_item">
+                        <a href="sub01.html"><span>기관소개</span></a>
+                        <ul class="gnb_2dep" aria-label="기관소개 하위 메뉴">
+                            <li class="item_02"><a href="#" target="_blank"><span>인사말</span></a></li>
+                            <li class="item_02"><a href="#"><span>연혁</span></a></li>
+                            <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="sub01.html"><span>사업안내</span></a>
+                        <ul class="gnb_2dep" aria-label="사업안내 하위 메뉴">
+                            <li class="item_02"><a href="#"><span>주요사업</span></a></li>
+                            <li class="item_02"><a href="#"><span>지원사업</span></a></li>
+                            <li class="item_02"><a href="#"><span>신청안내</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#"><span>알림마당</span></a>
+                        <ul class="gnb_2dep" aria-label="알림마당 하위 메뉴">
+                            <li class="item_02"><a href="#"><span>공지사항</span></a></li>
+                            <li class="item_02"><a href="#"><span>보도자료</span></a></li>
+                            <li class="item_02"><a href="#"><span>자료실</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#"><span>고객지원</span></a>
+                        <ul class="gnb_2dep" aria-label="고객지원 하위 메뉴">
+                            <li class="item_02"><a href="#"><span>FAQ</span></a></li>
+                            <li class="item_02"><a href="#"><span>문의하기</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#" target="_blank"><span>새창열림</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="right">
+                <button type="button" class="site_search">통합검색</button>
+                <a href="#" class="site_login">로그인</a>
+                <!-- <div class="btn_tog01 btn_toggle">
+                    <a href="" class="">토글1</a>
+                    <div>
+                        <a href="#"><span>토글1</span></a>
+                        <a href="#"><span>토글1</span></a>
+                    </div>
+                </div> -->
+                <div class="btn_tog02 btn_toggle">
+                    <a href="" class="">토글2</a>
+                    <div>
+                        <a href="#"><span>토글2</span></a>
+                        <a href="#"><span>토글2</span></a>
+                    </div>
+                </div>
+                <button type="button" class="mnav_open" aria-label="전체 메뉴 열기">
+                    <img src="../resources/images/common/icon_menu_open.svg" alt="">
+                </button>
+            </div>
+        </div>
+
+        <div id="m_nav" class="gnb_mobile" hidden>
+            <div class="mb_top">
+                <a href="#" class="mb_logo" aria-label="홈으로 이동">
+                    <img src="../resources/images/common/logo_header_dark.svg" alt="" width="146" height="32">
+                </a>
+                <div class="link">
+                    <a href="#">로그인</a>
+                    <a href="#">사이트맵</a>
+                </div>
+                <button type="button" class="gnb_close_btn" aria-label="전체 메뉴 닫기"><span></span><span></span></button>
+            </div>
+            <nav class="mb_nav" aria-label="모바일 주요 메뉴">
+                <ul class="gnb_wrap">
+                    <li class="gnb_item">
+                        <a href="#" target="_blank"><span>기관소개</span></a>
+                        <ul class="gnb_2dep" hidden>
+                            <li class="item_02"><a href="#" target="_blank"><span>인사말</span></a></li>
+                            <li class="item_02"><a href="#"><span>연혁</span></a></li>
+                            <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#"><span>사업안내</span></a>
+                        <ul class="gnb_2dep" hidden>
+                            <li class="item_02"><a href="#"><span>주요사업</span></a></li>
+                            <li class="item_02"><a href="#"><span>지원사업</span></a></li>
+                            <li class="item_02"><a href="#"><span>신청안내</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#"><span>알림마당</span></a>
+                        <ul class="gnb_2dep" hidden>
+                            <li class="item_02"><a href="#"><span>공지사항</span></a></li>
+                            <li class="item_02"><a href="#"><span>보도자료</span></a></li>
+                            <li class="item_02"><a href="#"><span>자료실</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#"><span>고객지원</span></a>
+                        <ul class="gnb_2dep" hidden>
+                            <li class="item_02"><a href="#"><span>FAQ</span></a></li>
+                            <li class="item_02"><a href="#"><span>문의하기</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#" target="_blank"><span>새창열림</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="container">
+        <section class="main_visual">
+            <h2 class="sr-only">메인 비주얼</h2>
+            <div class="visual_swiper swiper-container" aria-label="주요 비주얼 슬라이드">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide visual_slide"><a href="./sub01.html"><img class="visual_img" src="../resources/images/temp/img_placeholder_16x9.svg" alt="" aria-hidden="true" width="1920" height="940"></a></div>
+                    <div class="swiper-slide visual_slide"><a href="./sub01.html"><img class="visual_img" src="../resources/images/temp/img_placeholder_16x9.svg" alt="" aria-hidden="true" width="1920" height="940" loading="lazy"></a></div>
+                </div>
+                <div class="txt_box">
+                    <p class="eyebrow">Type 01</p>
+                    <h2>Header on Visual</h2>
+                    <p>메인과 서브 모두 헤더가 비주얼 위에 올라가는 시작 템플릿입니다.</p>
+                    <div class="link_group"><a href="./sub01.html" class="starter_btn">서브페이지 보기</a></div>
+                </div>
+                <div class="visual_pagination" aria-label="비주얼 바로가기"></div>
+            </div>
+        </section>
+
+        <section class="starter_intro">
+            <div class="inner">
+                <h2>메인 콘텐츠 영역</h2>
+                <p>Figma 작업 시 이 영역부터 섹션 단위로 교체합니다. 필요한 컴포넌트는 guide/patterns에서 가져와 붙입니다.</p>
+                <ul class="starter_card_list">
+                    <li class="starter_card_item"><strong>헤더 오버레이</strong><span>스크롤 전 비주얼 위에 배치되는 헤더 유형입니다.</span></li>
+                    <li class="starter_card_item"><strong>플레이스홀더</strong><span>비주얼 이미지는 images/temp 플레이스홀더를
+                            사용합니다.</span></li>
+                    <li class="starter_card_item"><strong>복사용</strong><span>main01.html, sub01.html, main01.css,
+                            main01.js를 선택해 시작합니다.</span></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="inner">
+            <div class="f_bottom">
+                <div class="f_policy"><a href="#"><strong>개인정보처리방침</strong></a><a href="#">이메일무단수집거부</a></div>
+                <div class="f_org">
+                    <div class="org_item"><strong class="org_logo"><img src="../resources/images/common/logo_header_light.svg" alt="" width="160" height="36"></strong>
+                        <address>[41256] 대구광역시 동구 동대구로 487</address>
+                    </div>
+                </div>
+                <p class="copy">Copyright(C) SITE NAME. All Rights Reserved.</p>
+            </div>
+        </div>
+        <button class="go_top active" type="button" aria-label="맨 위로 이동">TOP</button>
+    </footer>
+</body>
+
+</html>

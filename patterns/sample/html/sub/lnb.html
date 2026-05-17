@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>Header Basic Pattern</title>
+    <link rel="stylesheet" href="../../resources/css/plugin/swiper.min.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
+
+    <!-- 기본형 헤더 -->
+    <link rel="stylesheet" href="../../resources/css/layout.css">
+
+    <link rel="stylesheet" href="../../resources/css/sample.css">
+
+    <script src="../../resources/js/plugin/jquery-3.7.1.min.js"></script>
+
+    <!-- 기본형 헤더 -->
+    <script src="../../resources/js/layout.js"></script>
+
+    <!-- 이 페이지 전용 css -->
+    <style>
+        .sub_content {
+            padding: 64px 0 120px;
+        }
+
+        .sub_layout {
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 80px;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .sub_layout {
+            display: grid;
+            grid-template-columns: 270px minmax(0, 1fr);
+            gap: 56px;
+        }
+
+        .sub_body {
+            min-width: 0;
+        }
+
+        .breadcrumb-wrap {
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            color: #4c4c4c;
+            font-size: 15px;
+        }
+
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breadcrumb li+li::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-top: 1px solid #999;
+            border-right: 1px solid #999;
+            transform: rotate(45deg);
+        }
+
+        .breadcrumb .txt {
+            color: inherit;
+        }
+
+        .breadcrumb .home .txt {
+            display: block;
+            overflow: hidden;
+            width: 17px;
+            height: 17px;
+            background: url("../../resources/images/b_home.svg") center / contain no-repeat;
+            color: transparent;
+            white-space: nowrap;
+            text-indent: 100%;
+        }
+
+        .sub_lnb {
+            align-self: start;
+            overflow: hidden;
+            border-radius: 0 24px 24px 0;
+            background: #fff;
+            box-shadow: 12px 18px 34px rgba(17, 34, 28, 0.08);
+        }
+
+        .sub_lnb .lnb_title {
+            position: relative;
+            min-height: 140px;
+            padding: 56px 30px 28px;
+            overflow: hidden;
+            background: var(--color-primary);
+            color: #fff;
+            font-size: 27px;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+
+        .sub_lnb .lnb_title::after {
+            content: "";
+            position: absolute;
+            right: -48px;
+            top: 18px;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+        }
+
+        .sub_lnb .lnb_list {
+            padding: 14px 18px 28px 14px;
+            border-radius: 24px 0 0 0;
+            background: #fff;
+        }
+
+        .sub_lnb .lnb_item {
+            border-bottom: 1px solid #dfe3e7;
+        }
+
+        /* .sub_lnb>.lnb_list>.lnb_item:has(+ .lnb_item>.is-active) {
+            border-bottom: 0;
+        } */
+
+        .sub_lnb .lnb_toggle,
+        .sub_lnb a {
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 18px 16px;
+            background: #fff;
+            color: #111;
+            font-size: 16px;
+            line-height: 1.35;
+            text-align: left;
+        }
+
+        .sub_lnb .lnb_toggle {
+            padding-right: 44px;
+        }
+
+        .sub_lnb a>span {
+            vertical-align: top;
+        }
+
+        .sub_lnb>.lnb_list>.lnb_item>a>span {
+            display: inline-block;
+            max-width: 100%;
+            white-space: normal;
+            overflow-wrap: break-word;
+        }
+
+        .sub_lnb .lnb_toggle::after {
+            content: "";
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            width: 9px;
+            height: 9px;
+            border-right: 2px solid #555;
+            border-bottom: 2px solid #555;
+            transform: translateY(-65%) rotate(45deg);
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .sub_lnb .lnb_toggle.is-active::after {
+            border-color: var(--color-primary-dark);
+            transform: translateY(-35%) rotate(225deg);
+        }
+
+        .sub_lnb a[target="_blank"]>span {
+            display: inline-block;
+        }
+
+        .sub_lnb a[target="_blank"]>span::after {
+            content: "";
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            margin-left: 6px;
+            vertical-align: -2px;
+            background: url("../../resources/images/blank_sg.svg") center/contain no-repeat;
+        }
+
+        .sub_lnb .lnb_depth3 {
+            padding: 10px 0;
+            background: #fff;
+        }
+
+        .sub_lnb .lnb_depth3 a {
+            padding: 8px 20px 8px 36px;
+            font-size: 15px;
+        }
+
+        .sub_lnb .lnb_depth3 a::before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #ddd;
+            transform: translateY(-50%);
+        }
+
+        .sub_lnb .lnb_toggle:hover,
+        .sub_lnb a:hover {
+            color: var(--color-primary-dark);
+            font-weight: 700;
+        }
+
+        .sub_lnb>.lnb_list>.lnb_item>.is-active {
+            color: var(--color-primary);
+            font-weight: 700;
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .sub_lnb .lnb_depth a.is-active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        .sub_lnb .lnb_depth a.is-active::before {
+            background: var(--color-primary);
+        }
+
+        .sub_title {
+            margin-bottom: 28px;
+            color: #111;
+            font-size: 32px;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+
+        .sub_placeholder {
+            min-height: 260px;
+            padding: 40px;
+            border: 1px dashed #ccd6dd;
+            border-radius: 8px;
+            background: #f8fafb;
+        }
+
+        @media (max-width: 1023px) {
+
+            .sub_layout {
+                padding-inline: 20px;
+            }
+
+            .sub_layout {
+                display: block;
+            }
+
+            .sub_lnb {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sub_content {
+                padding: 56px 0 80px;
+            }
+
+            .sub_placeholder {
+                min-height: 220px;
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body class="pattern_sample">
+    <div id="wrap">
+        <header id="siteHeader" class="header">
+            <div class="header_inner">
+                <h1 class="logo">
+                    <a href="#" aria-label="홈으로 이동">
+                        <img src="../../resources/images/common/logo_header_dark.svg"
+                            data-light-src="../../resources/images/common/logo_header_dark.svg"
+                            data-dark-src="../../resources/images/common/logo_header_dark.svg" alt="" width="160"
+                            height="36">
+                        <span class="sr-only">사이트 로고</span>
+                    </a>
+                </h1>
+                <nav class="pc_nav" aria-label="주요 메뉴">
+                    <ul class="gnb_wrap">
+                        <li class="gnb_item">
+                            <a href="#"><span>기관소개</span></a>
+                            <ul class="gnb_2dep" aria-label="기관소개 하위 메뉴">
+                                <li class="item_02"><a href="#" target="_blank"><span>인사말</span></a></li>
+                                <li class="item_02"><a href="#"><span>연혁</span></a></li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>사업안내</span></a>
+                            <ul class="gnb_2dep" aria-label="사업안내 하위 메뉴">
+                                <li class="item_02"><a href="#"><span>주요사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>지원사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>신청안내</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>알림마당</span></a>
+                            <ul class="gnb_2dep" aria-label="알림마당 하위 메뉴">
+                                <li class="item_02"><a href="#"><span>공지사항</span></a></li>
+                                <li class="item_02"><a href="#"><span>보도자료</span></a></li>
+                                <li class="item_02"><a href="#"><span>자료실</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>고객지원</span></a>
+                            <ul class="gnb_2dep" aria-label="고객지원 하위 메뉴">
+                                <li class="item_02"><a href="#"><span>FAQ</span></a></li>
+                                <li class="item_02"><a href="#"><span>문의하기</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#" target="_blank"><span>새창열림</span></a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="right">
+                    <button type="button" class="site_search">통합검색</button>
+                    <a href="#" class="site_login">로그인</a>
+                    <!-- <div class="btn_tog01 btn_toggle">
+                    <a href="" class="">토글1</a>
+                    <div>
+                        <a href="#"><span>토글1</span></a>
+                        <a href="#"><span>토글1</span></a>
+                    </div>
+                </div> -->
+                    <div class="btn_tog02 btn_toggle">
+                        <a href="" class="">토글2</a>
+                        <div>
+                            <a href="#"><span>토글2</span></a>
+                            <a href="#"><span>토글2</span></a>
+                        </div>
+                    </div>
+                    <button type="button" class="mnav_open" aria-label="전체 메뉴 열기">
+                        <img src="../../resources/images/common/icon_menu_open.svg" alt="">
+                    </button>
+                </div>
+            </div>
+
+            <div id="m_nav" class="gnb_mobile" hidden>
+                <div class="mb_top">
+                    <a href="#" class="mb_logo" aria-label="홈으로 이동">
+                        <img src="../../resources/images/common/logo_header_dark.svg" alt="" width="146" height="32">
+                    </a>
+                    <div class="link">
+                        <a href="#">로그인</a>
+                        <a href="#">사이트맵</a>
+                    </div>
+                    <button type="button" class="gnb_close_btn"
+                        aria-label="전체 메뉴 닫기"><span></span><span></span></button>
+                </div>
+                <nav class="mb_nav" aria-label="모바일 주요 메뉴">
+                    <ul class="gnb_wrap">
+                        <li class="gnb_item">
+                            <a href="#"><span>기관소개</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#" target="_blank"><span>인사말</span></a></li>
+                                <li class="item_02"><a href="#"><span>연혁</span></a></li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>사업안내</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#"><span>주요사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>지원사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>신청안내</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>알림마당</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#"><span>공지사항</span></a></li>
+                                <li class="item_02"><a href="#"><span>보도자료</span></a></li>
+                                <li class="item_02"><a href="#"><span>자료실</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>고객지원</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#"><span>FAQ</span></a></li>
+                                <li class="item_02"><a href="#"><span>문의하기</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#" target="_blank"><span>새창열림</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+
+        <main id="container" class="sub_container">
+            <section class="sub_content">
+                <div class="sub_layout">
+                    <aside class="sub_lnb">
+                        <h3 class="lnb_title">기관소개</h3>
+                        <ul class="lnb_list">
+                            <li class="lnb_item">
+                                <a href="#" class="is-active"><span>인사말</span></a>
+                                <ul class="lnb_depth lnb_depth3">
+                                    <li><a href="#" class="is-active"><span>3뎁스</span></a></li>
+                                    <li><a href="#"><span>3뎁스</span></a></li>
+                                    <li><a href="#" target="_blank"><span>3뎁스</span></a></li>
+                                </ul>
+                            </li>
+                            <li class="lnb_item">
+                                <a href="#"><span>연혁</span></a>
+                                <ul class="lnb_depth lnb_depth3">
+                                    <li><a href="#"><span>3뎁스</span></a></li>
+                                    <li><a href="#"><span>3뎁스</span></a></li>
+                                </ul>
+                            </li>
+                            <li class="lnb_item">
+                                <a href="#"><span>오시는길</span></a>
+                            </li>
+                            <li class="lnb_item">
+                                <a href="#" target="_blank"><span>자료실</span></a>
+                            </li>
+                        </ul>
+                    </aside>
+                    <div class="sub_body">
+                        <nav class="breadcrumb-wrap" aria-label="브레드크럼">
+                            <ul class="breadcrumb">
+                                <li class="home"><a href="#" class="txt">홈</a></li>
+                                <li><a href="#" class="txt">기관소개</a></li>
+                                <li><a href="#" class="txt">인사말</a></li>
+                            </ul>
+                        </nav>
+                        <h3 class="sub_title">인사말</h3>
+                        <div class="sub_placeholder">Figma MCP 연결 후 본문 섹션을 순차 구현합니다.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+        <footer class="footer">
+            <div class="inner">
+                <p class="f_slogan"><span>사이트 운영 문구 영역</span><span><strong>푸터 슬로건</strong> 자리</span></p>
+                <div class="f_bottom">
+                    <div class="f_policy"><a href="#"><strong>개인정보처리방침</strong></a><a href="#">이용약관</a></div>
+                    <div class="f_org">
+                        <div class="org_item"><strong class="org_logo">LOGO <span>기관명</span></strong>
+                            <address>[00000] 주소 영역을 입력합니다.</address>
+                        </div>
+                    </div>
+                    <p class="copy">Copyright(C) SITE NAME. All Rights Reserved.</p>
+                </div>
+            </div>
+            <button class="go_top active" type="button" aria-label="맨 위로 이동">TOP</button>
+        </footer>
+    </div>
+
+    <!-- 이 페이지 전용 js -->
+    <script>
+        $(document).ready(function () {
+            /* 서브 LNB: 좌측 메뉴의 하위 목록 열기/닫기 */
+            var $lnb = $(".sub_lnb");
+
+            /* 하위 메뉴가 있는 링크에 토글 클래스 자동 부여 */
+            $lnb.find(".lnb_list li:has(> .lnb_depth)>a").addClass("lnb_toggle");
+
+            /* 초기 상태: 전체 하위 메뉴를 닫고 active 메뉴의 하위 메뉴만 표시 */
+            $lnb.find(".lnb_depth").hide();
+            $lnb.find(".lnb_toggle.is-active").next(".lnb_depth").show();
+
+            /* 메뉴 클릭 시 active 이동 및 하위 메뉴 표시 제어 */
+            $lnb.on("click", ".lnb_list a", function (e) {
+                e.preventDefault();
+
+                var $btn = $(this);
+                var $panel = $btn.next(".lnb_depth");
+                var isTopDepth = $btn.parent(".lnb_item").parent(".lnb_list").length > 0;
+                var isOpenTopDepth = isTopDepth && $panel.length && $btn.hasClass("is-active") && $panel.is(":visible");
+
+                /* 열린 최상위 메뉴 재클릭: 자기 2뎁스 닫고 active 제거 */
+                if (isOpenTopDepth) {
+                    $btn.removeClass("is-active");
+                    $lnb.find(".lnb_depth a").removeClass("is-active");
+                    $panel.stop(true, true).slideUp(180);
+                    return;
+                }
+
+                /* 최상위 메뉴 클릭: active 이동 후 해당 2뎁스만 열기 */
+                if (isTopDepth) {
+                    $lnb.find(">.lnb_list>.lnb_item>a").removeClass("is-active");
+                    $lnb.find(".lnb_depth a").removeClass("is-active");
+                    $btn.addClass("is-active");
+
+                    if ($panel.length) {
+                        $lnb.find(".lnb_depth").not($panel).stop(true, true).slideUp(180);
+                        $panel.stop(true, true).slideDown(180);
+                    } else {
+                        $lnb.find(".lnb_depth").stop(true, true).slideUp(180);
+                    }
+
+                    return;
+                }
+
+                /* 2뎁스 메뉴 클릭: 2뎁스 active만 이동 */
+                $lnb.find(".lnb_depth a").removeClass("is-active");
+                $btn.addClass("is-active");
+            });
+
+        });
+    </script>
+</body>
+
+</html>

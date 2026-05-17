@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>가로형 snb1</title>
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <!-- 기본형 헤더 -->
+    <link rel="stylesheet" href="../../resources/css/layout.css">
+
+    <link rel="stylesheet" href="../../resources/css/sample.css">
+    <script src="../../resources/js/plugin/jquery-3.7.1.min.js"></script>
+    <script src="../../resources/js/layout.js"></script>
+
+    <style>
+        .sub_visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 360px;
+            padding: 120px 0 80px;
+            overflow: hidden;
+            background: #edf3f0;
+        }
+
+        .sub_visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.12)), url("../../resources/images/temp/img_placeholder_16x9.svg") center / cover no-repeat;
+        }
+
+        .sub_visual .inner {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 80px;
+            box-sizing: border-box;
+            margin: 0 auto;
+            color: #fff;
+        }
+
+        /* 브레드크럼: LNB 패턴과 동일한 구조, 비주얼 영역에서는 흰색으로 표시 */
+        .breadcrumb-wrap {
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breadcrumb li+li::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-top: 1px solid currentColor;
+            border-right: 1px solid currentColor;
+            transform: rotate(45deg);
+        }
+
+        .breadcrumb .txt {
+            color: inherit;
+        }
+
+        .breadcrumb .home .txt {
+            display: block;
+            overflow: hidden;
+            width: 17px;
+            height: 17px;
+            background: url("../../resources/images/b_home.svg") center / contain no-repeat;
+            filter: brightness(0) invert(1);
+            color: transparent;
+            white-space: nowrap;
+            text-indent: 100%;
+        }
+
+        .sub_visual p {
+            max-width: 720px;
+            margin-top: 18px;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .sub_visual h2 {
+            font-size: clamp(36px, 5vw, 64px);
+            line-height: 1.15;
+            font-weight: 800;
+        }
+
+        .sub_content {
+            padding: 80px 0 120px;
+        }
+
+        .sub_content>.inner {
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 80px;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .sub_title {
+            margin-bottom: 28px;
+            color: #111;
+            font-size: 32px;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+
+        .sub_placeholder {
+            min-height: 260px;
+            padding: 40px;
+            border: 1px dashed #ccd6dd;
+            border-radius: 8px;
+            background: #f8fafb;
+        }
+
+        .drop_menu {
+            position: relative;
+            z-index: 20;
+            border-bottom: 1px solid #111;
+            background: #fff;
+        }
+
+        .drop_menu_inner {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 80px;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .drop_home {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 56px;
+            min-height: 64px;
+            border-right: 1px solid #d9d9d9;
+        }
+
+        .drop_home .txt {
+            display: block;
+            overflow: hidden;
+            width: 22px;
+            height: 22px;
+            background: url("../../resources/images/b_home.svg") center / contain no-repeat;
+            color: transparent;
+            white-space: nowrap;
+            text-indent: 100%;
+        }
+
+        .drop_item {
+            position: relative;
+            width: 260px;
+            border-right: 1px solid #d9d9d9;
+        }
+
+        .drop_btn {
+            position: relative;
+            display: block;
+            width: 100%;
+            min-height: 64px;
+            padding: 0 52px 0 32px;
+            background: #fff;
+            color: #111;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 64px;
+            text-align: left;
+        }
+
+        .drop_btn::after {
+            content: "";
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            width: 9px;
+            height: 9px;
+            border-right: 2px solid #777;
+            border-bottom: 2px solid #777;
+            transform: translateY(-65%) rotate(45deg);
+            transition: transform 0.2s ease;
+        }
+
+        .drop_item.is-open .drop_btn::after {
+            transform: translateY(-35%) rotate(225deg);
+        }
+
+        .drop_panel {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 100%;
+            border: 1px solid #d9d9d9;
+            border-top: 1px solid #111;
+            box-shadow: 0 14px 28px rgba(17, 24, 39, 0.08);
+            background: #fff;
+        }
+
+        .drop_item.is-open .drop_panel {
+            display: block;
+        }
+
+        .drop_list {
+            padding: 12px;
+        }
+
+        .drop_list a {
+            display: block;
+            padding: 12px 18px;
+            border-radius: 6px;
+            color: #111;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .drop_list a:hover,
+        .drop_list a.is-active {
+            background: #f5f5f5;
+            color: var(--color-primary-dark);
+        }
+
+        .drop_list a[target="_blank"]>span::after {
+            content: "";
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            margin-left: 6px;
+            vertical-align: -2px;
+            background: url("../../resources/images/blank_sg.svg") center/contain no-repeat;
+        }
+
+        @media (max-width: 1023px) {
+
+            .sub_visual .inner,
+            .sub_content>.inner,
+            .drop_menu_inner {
+                padding-inline: 20px;
+            }
+
+            .drop_item {
+                width: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sub_visual {
+                min-height: 300px;
+                padding: 96px 0 56px;
+            }
+
+            .sub_visual p {
+                font-size: 16px;
+            }
+
+            .sub_content {
+                padding: 56px 0 80px;
+            }
+
+            .drop_menu_inner {
+                display: block;
+                padding-inline: 20px;
+            }
+
+            .drop_home {
+                display: none;
+            }
+
+            .drop_item:first-of-type {
+                display: none;
+            }
+
+            .drop_item {
+                width: 100%;
+                border-right: 0;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .drop_btn {
+                min-height: 56px;
+                line-height: 56px;
+                padding-left: 0;
+            }
+
+            .sub_placeholder {
+                min-height: 220px;
+                padding: 24px;
+            }
+        }
+
+    </style>
+</head>
+
+<body class="pattern_sample">
+    <div id="wrap">
+        <header id="siteHeader" class="header">
+            <div class="header_inner">
+                <h1 class="logo">
+                    <a href="#" aria-label="홈으로 이동">
+                        <img src="../../resources/images/common/logo_header_dark.svg"
+                            data-light-src="../../resources/images/common/logo_header_dark.svg"
+                            data-dark-src="../../resources/images/common/logo_header_dark.svg" alt="" width="160"
+                            height="36">
+                        <span class="sr-only">사이트 로고</span>
+                    </a>
+                </h1>
+                <nav class="pc_nav" aria-label="주요 메뉴">
+                    <ul class="gnb_wrap">
+                        <li class="gnb_item">
+                            <a href="#"><span>기관소개</span></a>
+                            <ul class="gnb_2dep" aria-label="기관소개 하위 메뉴">
+                                <li class="item_02"><a href="#" target="_blank"><span>인사말</span></a></li>
+                                <li class="item_02"><a href="#"><span>연혁</span></a></li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>사업안내</span></a>
+                            <ul class="gnb_2dep" aria-label="사업안내 하위 메뉴">
+                                <li class="item_02"><a href="#"><span>주요사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>지원사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>신청안내</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>알림마당</span></a>
+                            <ul class="gnb_2dep" aria-label="알림마당 하위 메뉴">
+                                <li class="item_02"><a href="#"><span>공지사항</span></a></li>
+                                <li class="item_02"><a href="#"><span>보도자료</span></a></li>
+                                <li class="item_02"><a href="#"><span>자료실</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>고객지원</span></a>
+                            <ul class="gnb_2dep" aria-label="고객지원 하위 메뉴">
+                                <li class="item_02"><a href="#"><span>FAQ</span></a></li>
+                                <li class="item_02"><a href="#"><span>문의하기</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#" target="_blank"><span>새창열림</span></a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="right">
+                    <button type="button" class="site_search">통합검색</button>
+                    <a href="#" class="site_login">로그인</a>
+                    <!-- <div class="btn_tog01 btn_toggle">
+                    <a href="" class="">토글1</a>
+                    <div>
+                        <a href="#"><span>토글1</span></a>
+                        <a href="#"><span>토글1</span></a>
+                    </div>
+                </div> -->
+                    <div class="btn_tog02 btn_toggle">
+                        <a href="" class="">토글2</a>
+                        <div>
+                            <a href="#"><span>토글2</span></a>
+                            <a href="#"><span>토글2</span></a>
+                        </div>
+                    </div>
+                    <button type="button" class="mnav_open" aria-label="전체 메뉴 열기">
+                        <img src="../../resources/images/common/icon_menu_open.svg" alt="">
+                    </button>
+                </div>
+            </div>
+
+            <div id="m_nav" class="gnb_mobile" hidden>
+                <div class="mb_top">
+                    <a href="#" class="mb_logo" aria-label="홈으로 이동">
+                        <img src="../../resources/images/common/logo_header_dark.svg" alt="" width="146" height="32">
+                    </a>
+                    <div class="link">
+                        <a href="#">로그인</a>
+                        <a href="#">사이트맵</a>
+                    </div>
+                    <button type="button" class="gnb_close_btn"
+                        aria-label="전체 메뉴 닫기"><span></span><span></span></button>
+                </div>
+                <nav class="mb_nav" aria-label="모바일 주요 메뉴">
+                    <ul class="gnb_wrap">
+                        <li class="gnb_item">
+                            <a href="#"><span>기관소개</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#" target="_blank"><span>인사말</span></a></li>
+                                <li class="item_02"><a href="#"><span>연혁</span></a></li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>사업안내</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#"><span>주요사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>지원사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>신청안내</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>알림마당</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#"><span>공지사항</span></a></li>
+                                <li class="item_02"><a href="#"><span>보도자료</span></a></li>
+                                <li class="item_02"><a href="#"><span>자료실</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>고객지원</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#"><span>FAQ</span></a></li>
+                                <li class="item_02"><a href="#"><span>문의하기</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#" target="_blank"><span>새창열림</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="sub_container">
+            <section class="sub_visual">
+                <div class="inner">
+                    <!-- 브레드크럼: LNB 패턴과 동일한 마크업 사용 -->
+                    <nav class="breadcrumb-wrap" aria-label="브레드크럼">
+                        <ul class="breadcrumb">
+                            <li class="home"><a href="#" class="txt">홈</a></li>
+                            <li><a href="#" class="txt">알림마당</a></li>
+                        </ul>
+                    </nav>
+                    <h2>드롭다운메뉴</h2>
+                    <p>서브 비주얼 바로 아래에 1뎁스와 2뎁스 드롭다운 메뉴를 배치하는 패턴입니다.</p>
+                </div>
+            </section>
+
+            <nav class="drop_menu" aria-label="서브 메뉴">
+                <div class="drop_menu_inner">
+                    <a href="#" class="drop_home"><span class="txt">홈</span></a>
+                    <div class="drop_item">
+                        <a href="#" class="drop_btn"><span>기관소개</span></a>
+                        <div class="drop_panel">
+                            <ul class="drop_list">
+                                <li><a href="#" class="is-active"><span>기관소개</span></a></li>
+                                <li><a href="#"><span>사업안내</span></a></li>
+                                <li><a href="#"><span>알림마당</span></a></li>
+                                <li><a href="#"><span>고객지원</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="drop_item">
+                        <a href="#" class="drop_btn"><span>인사말</span></a>
+                        <div class="drop_panel">
+                            <ul class="drop_list">
+                                <li><a href="#" class="is-active"><span>인사말</span></a></li>
+                                <li><a href="#"><span>연혁</span></a></li>
+                                <li><a href="#" target="_blank"><span>오시는 길</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <section class="sub_content">
+                <div class="inner">
+                    <h3 class="sub_title">본문 콘텐츠</h3>
+                    <div class="sub_body">
+                        <div class="sub_placeholder">서브 비주얼 바로 아래에 1뎁스와 2뎁스 드롭다운 메뉴를 배치하는 패턴입니다.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="inner">
+                <p class="f_slogan"><span>사이트 운영 문구 영역</span><span><strong>푸터 슬로건</strong> 자리</span></p>
+                <div class="f_bottom">
+                    <div class="f_policy"><a href="#"><strong>개인정보처리방침</strong></a><a href="#">이용약관</a></div>
+                    <div class="f_org">
+                        <div class="org_item"><strong class="org_logo">LOGO <span>기관명</span></strong>
+                            <address>[00000] 주소 영역을 입력합니다.</address>
+                        </div>
+                    </div>
+                    <p class="copy">Copyright(C) SITE NAME. All Rights Reserved.</p>
+                </div>
+            </div>
+            <button class="go_top active" type="button" aria-label="맨 위로 이동">TOP</button>
+        </footer>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var $dropMenu = $(".drop_menu");
+
+            /* 드롭다운 버튼 클릭 시 해당 메뉴 열기/닫기 */
+            $dropMenu.on("click", ".drop_btn", function (e) {
+                e.preventDefault();
+
+                var $item = $(this).closest(".drop_item");
+                var isOpen = $item.hasClass("is-open");
+
+                $dropMenu.find(".drop_item").removeClass("is-open");
+
+                if (!isOpen) {
+                    $item.addClass("is-open");
+                }
+            });
+
+            /* 드롭다운 항목 선택 시 active 이동, 버튼 텍스트 갱신, 메뉴 닫기 */
+            $dropMenu.on("click", ".drop_list a", function (e) {
+                e.preventDefault();
+
+                var $link = $(this);
+                var $item = $link.closest(".drop_item");
+
+                $item.find(".drop_list a").removeClass("is-active");
+                $link.addClass("is-active");
+                $item.find(".drop_btn span").text($.trim($link.text()));
+                $item.removeClass("is-open");
+            });
+
+            /* 드롭다운 바깥 클릭 시 열린 메뉴 닫기 */
+            $(document).on("click", function (e) {
+                if (!$(e.target).closest(".drop_menu").length) {
+                    $dropMenu.find(".drop_item").removeClass("is-open");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,319 @@
+﻿<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>컴포넌트 패턴</title>
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <link rel="stylesheet" href="../../resources/css/sample.css">
+    <link rel="stylesheet" href="../../resources/css/components.css">
+    <script src="../../resources/js/plugin/jquery-3.7.1.min.js" defer></script>
+    <script src="../../resources/js/components.js" defer></script>
+</head>
+
+<body class="pattern_guide_body">
+    <div id="skip-nav">
+        <a href="#container">본문 바로가기</a>
+    </div>
+
+    <main id="container" class="component_page">
+        <div class="component_wrap">
+            <h1 class="component_page_title">컴포넌트 패턴</h1>
+
+            <section class="component_group" aria-labelledby="buttonPatternTitle">
+                <h2 id="buttonPatternTitle" class="component_title">Button</h2>
+                <p class="component_desc">일반 버튼, 아이콘 버튼, 텍스트 버튼, 칩 버튼 예시입니다.</p>
+
+                <div class="component_preview">
+                    <!-- button copy start -->
+                    <div class="component_block">
+                        <h3 class="component_subtitle">기본</h3>
+                        <div class="component_row">
+                            <button type="button" class="btn">버튼</button>
+                        </div>
+                    </div>
+
+                    <div class="component_block">
+                        <h3 class="component_subtitle">계층</h3>
+                        <div class="component_row">
+                            <button type="button" class="btn primary">버튼 : primary</button>
+                            <button type="button" class="btn secondary">버튼 : secondary</button>
+                            <button type="button" class="btn tertiary">버튼 : tertiary</button>
+                        </div>
+                    </div>
+
+                    <div class="component_block">
+                        <h3 class="component_subtitle">텍스트</h3>
+                        <div class="component_row">
+                            <button type="button" class="btn-txt">텍스트 버튼</button>
+                            <button type="button" class="btn-txt underline">밑줄 버튼</button>
+                            <span>텍스트 사이의 <a href="#" class="btn-txt link">링크</a> (높이값 초기화)</span>
+                            <button type="button" class="btn-txt ico-like">찜하기</button>
+                            <button type="button" class="btn-txt ico-sch">검색</button>
+                            <a href="@" class="btn sm btn-txt ico-go">새창열림</a>
+                            <a href="#" class="btn-txt ico-arr">자세히 보기</a>
+                            <a href="#" class="btn-txt ico-down">파일다운로드</a>
+                            <button type="button" class="btn-txt ico-filter">필터</button>
+                        </div>
+                    </div>
+
+                    <div class="component_block">
+                        <h3 class="component_subtitle">추가 예시</h3>
+                        <div class="component_row">
+                            <a href="#" class="btn primary ico-arr">바로가기</a>
+                            <button type="button" class="btn secondary ico-arr-down">더보기</button>
+                            <button type="button" class="btn secondary sm">작은 버튼</button>
+                            <button type="button" class="btn tertiary xsm">초소형</button>
+                            <button type="button" class="btn primary" disabled>비활성</button>
+                        </div>
+
+                        <div class="component_row">
+                            <button type="button" class="btn-ico ico-sch"><span class="sr-only">검색</span></button>
+                            <button type="button" class="btn-ico ico-refresh"><span class="sr-only">새로고침</span></button>
+                            <button type="button" class="btn-ico ico-help"><span class="sr-only">도움말</span></button>
+                            <button type="button" class="btn-chip-fill active">전체</button>
+                            <button type="button" class="btn-chip-fill">진행중</button>
+                            <button type="button" class="btn-chip-outline">마감</button>
+                            <button type="button" class="btn-chip-outline">예정</button>
+                        </div>
+                    </div>
+                    <!-- button copy end -->
+                </div>
+            </section>
+
+            <section class="component_group" aria-labelledby="tabPatternTitle">
+                <h2 id="tabPatternTitle" class="component_title">Tab</h2>
+                <p class="component_desc">채움형 탭과 라인형 탭 예시입니다. 실제 전환 동작은 프로젝트 JS 패턴에 맞춰 연결합니다.</p>
+
+                <div class="component_preview">
+                    <!-- tab copy start -->
+                    <div class="tab-area">
+                        <div class="tab fill full" role="tablist" aria-label="채움형 탭">
+                            <ul>
+                                <li class="active"><button type="button" class="btn-tab" role="tab" aria-selected="true">전체</button></li>
+                                <li><button type="button" class="btn-tab" role="tab" aria-selected="false">접수중</button></li>
+                                <li><button type="button" class="btn-tab" role="tab" aria-selected="false">진행중</button></li>
+                                <li><button type="button" class="btn-tab" role="tab" aria-selected="false">마감</button></li>
+                            </ul>
+                        </div>
+                        <div class="tab-conts active" role="tabpanel">첫 번째 탭 콘텐츠 영역입니다.</div>
+                    </div>
+
+                    <div class="tab-area">
+                        <div class="tab line full" role="tablist" aria-label="라인형 탭">
+                            <ul>
+                                <li class="active"><button type="button" class="btn-tab" role="tab" aria-selected="true">소개</button></li>
+                                <li><button type="button" class="btn-tab" role="tab" aria-selected="false">주요내용</button></li>
+                                <li><button type="button" class="btn-tab" role="tab" aria-selected="false">신청방법</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- tab copy end -->
+                </div>
+            </section>
+
+            <section class="component_group" aria-labelledby="tablePatternTitle">
+                <h2 id="tablePatternTitle" class="component_title">Table / List</h2>
+                <p class="component_desc">일반 데이터 테이블과 안내 목록 예시입니다.</p>
+
+                <div class="component_preview">
+                    <!-- table copy start -->
+                    <div class="tbl-wrap mob-scroll">
+                        <table class="tbl data">
+                            <caption>신청 현황 - 구분, 대상, 기간, 상태 정보 제공</caption>
+                            <colgroup>
+                                <col class="col_md">
+                                <col>
+                                <col class="col_md">
+                                <col class="col_sm">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th scope="col">구분</th>
+                                    <th scope="col">대상</th>
+                                    <th scope="col">기간</th>
+                                    <th scope="col">상태</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>정기모집</td>
+                                    <td>일반 회원</td>
+                                    <td>2026-05-01 ~ 2026-05-31</td>
+                                    <td>접수중</td>
+                                </tr>
+                                <tr>
+                                    <td>추가모집</td>
+                                    <td>대기 회원</td>
+                                    <td>2026-06-01 ~ 2026-06-10</td>
+                                    <td>예정</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <ul class="info-list decimal">
+                        <li>신청 전 필수 제출 서류를 확인합니다.</li>
+                        <li>마감일 이후 접수된 신청은 처리되지 않습니다.</li>
+                    </ul>
+
+                    <ol class="info-list ordered">
+                        <li>신청서 작성</li>
+                        <li>담당자 검토</li>
+                        <li>결과 안내</li>
+                    </ol>
+                    <!-- table copy end -->
+                </div>
+            </section>
+
+            <section class="component_group" aria-labelledby="accordionPatternTitle">
+                <h2 id="accordionPatternTitle" class="component_title">Accordion / Tooltip</h2>
+                <p class="component_desc">FAQ, 안내문, 보조 설명에 사용하는 접힘/도움말 패턴입니다.</p>
+
+                <div class="component_preview">
+                    <!-- accordion copy start -->
+                    <div class="accordion">
+                        <div class="accordion-item active">
+                            <h3>
+                                <button type="button" class="btn-accordion active" aria-expanded="true" aria-controls="accordionPanel01" id="accordionTitle01">Accordion Title 1</button>
+                            </h3>
+                            <div id="accordionPanel01" class="accordion-collapse" role="region" aria-labelledby="accordionTitle01">
+                                <div class="accordion-body">Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3>
+                                <button type="button" class="btn-accordion" aria-expanded="false" aria-controls="accordionPanel02" id="accordionTitle02">Accordion Title 2</button>
+                            </h3>
+                            <div id="accordionPanel02" class="accordion-collapse" role="region" aria-labelledby="accordionTitle02">
+                                <div class="accordion-body">Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3>
+                                <button type="button" class="btn-accordion" aria-expanded="false" aria-controls="accordionPanel03" id="accordionTitle03">Accordion Title 3</button>
+                            </h3>
+                            <div id="accordionPanel03" class="accordion-collapse" role="region" aria-labelledby="accordionTitle03">
+                                <div class="accordion-body">Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3>
+                                <button type="button" class="btn-accordion" aria-expanded="false" aria-controls="accordionPanel04" id="accordionTitle04">Accordion Title 4</button>
+                            </h3>
+                            <div id="accordionPanel04" class="accordion-collapse" role="region" aria-labelledby="accordionTitle04">
+                                <div class="accordion-body">Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3>
+                                <button type="button" class="btn-accordion" aria-expanded="false" aria-controls="accordionPanel05" id="accordionTitle05">Accordion Title 5</button>
+                            </h3>
+                            <div id="accordionPanel05" class="accordion-collapse" role="region" aria-labelledby="accordionTitle05">
+                                <div class="accordion-body">Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents Accordion Contents</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="component_row">
+                        <span class="krds-tooltip-wrap bottom">
+                            <button type="button" class="tool-btn" aria-describedby="toolTip01">도움말</button>
+                            <span id="toolTip01" class="tool-in" role="tooltip">
+                                <strong class="tool-tit">입력 안내</strong>
+                                <span class="tool-cnt">필수 항목은 빠짐없이 입력하고 저장 전 내용을 확인합니다.</span>
+                            </span>
+                        </span>
+                    </div>
+                    <!-- accordion copy end -->
+                </div>
+            </section>
+
+            <section class="component_group" aria-labelledby="filePatternTitle">
+                <h2 id="filePatternTitle" class="component_title">File Upload</h2>
+                <p class="component_desc">파일 첨부 영역과 첨부 결과 목록 예시입니다.</p>
+
+                <div class="component_preview">
+                    <!-- file upload copy start -->
+                    <div class="file-upload">
+                        <p class="txt">첨부할 파일을 여기에 끌어다 놓거나, 파일 선택 버튼을 눌러 파일을 직접 선택해주세요.</p>
+                        <button type="button" class="btn primary ico-before ico-upload md">파일선택</button>
+                    </div>
+
+                    <div class="file-upload-result">
+                        <div class="upload-top">
+                            <div class="file-total"><span class="current">3개</span> / 10개</div>
+                        </div>
+                        <ul class="upload-list">
+                            <li>
+                                <div class="in">
+                                    <div class="file-name">전입신고서 [주민등록법 시행령 : 별지서식 15, 15호의2호] [hwp, 17KB]</div>
+                                    <div class="file-btn">
+                                        <button type="button" class="btn btn-txt ico-before ico-del sm h-auto">삭제</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="is-error">
+                                <div class="in">
+                                    <div class="file-name">전입재등록신고서 [주민등록법 시행령 : 별지서식 15, 15호의2호] [hwp, 17KB]</div>
+                                    <div class="file-btn">
+                                        <span class="ico-invalid error">
+                                            <em class="sr-only">에러</em>
+                                        </span>
+                                        <button type="button" class="btn btn-txt ico-before ico-del sm h-auto">삭제</button>
+                                    </div>
+                                </div>
+                                <p class="file-hint">
+                                    등록 가능한 파일 용량을 초과하였습니다.<br>
+                                    20MB 미만의 파일만 등록할 수 있습니다.
+                                </p>
+                            </li>
+                            <li>
+                                <div class="in">
+                                    <div class="file-name">위임장(주민등록법 시행령 별지 제15호의2호서식) [hwp, 17KB]</div>
+                                    <div class="file-btn">
+                                        <span class="spinner"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="in">
+                                    <div class="file-name">위임장(주민등록법 시행령 별지 제15호의2호서식) [hwp, 17KB]</div>
+                                    <div class="file-btn">
+                                        <span class="ico-invalid ok">
+                                            <em class="sr-only">정상</em>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="in">
+                                    <div class="file-name">위임장(주민등록법 시행령 별지 제15호의2호서식) [hwp, 17KB]</div>
+                                    <div class="file-btn">
+                                        <button type="button" class="btn btn-txt ico-before ico-del sm h-auto">삭제</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="in">
+                                    <div class="file-name">위임장(주민등록법 시행령 별지 제15호의2호서식) [hwp, 17KB]</div>
+                                    <div class="file-btn">
+                                        <button type="button" class="btn btn-txt ico-before ico-del sm h-auto">삭제</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="upload-delete-btn">
+                            <button type="button" class="btn btn-txt ico-before ico-del sm h-auto">전체 파일 삭제</button>
+                        </div>
+                    </div>
+                    <!-- file upload copy end -->
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>
+

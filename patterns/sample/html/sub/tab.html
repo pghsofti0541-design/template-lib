@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>가로형 snb1</title>
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <!-- 기본형 헤더 -->
+    <link rel="stylesheet" href="../../resources/css/layout.css">
+
+    <link rel="stylesheet" href="../../resources/css/sample.css">
+    <script src="../../resources/js/plugin/jquery-3.7.1.min.js"></script>
+    <script src="../../resources/js/layout.js"></script>
+
+    <style>
+        .sub_visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 360px;
+            padding: 120px 0 80px;
+            overflow: hidden;
+            background: #edf3f0;
+        }
+
+        .sub_visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.12)), url("../../resources/images/temp/img_placeholder_16x9.svg") center / cover no-repeat;
+        }
+
+        .sub_visual .inner {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 80px;
+            box-sizing: border-box;
+            margin: 0 auto;
+            color: #fff;
+        }
+
+        /* 브레드크럼: LNB 패턴과 동일한 구조, 비주얼 영역에서는 흰색으로 표시 */
+        .breadcrumb-wrap {
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breadcrumb li+li::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-top: 1px solid currentColor;
+            border-right: 1px solid currentColor;
+            transform: rotate(45deg);
+        }
+
+        .breadcrumb .txt {
+            color: inherit;
+        }
+
+        .breadcrumb .home .txt {
+            display: block;
+            overflow: hidden;
+            width: 17px;
+            height: 17px;
+            background: url("../../resources/images/b_home.svg") center / contain no-repeat;
+            filter: brightness(0) invert(1);
+            color: transparent;
+            white-space: nowrap;
+            text-indent: 100%;
+        }
+
+        .sub_visual p {
+            max-width: 720px;
+            margin-top: 18px;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .sub_visual h2 {
+            font-size: clamp(36px, 5vw, 64px);
+            line-height: 1.15;
+            font-weight: 800;
+        }
+
+        .sub_content {
+            padding: 80px 0 120px;
+        }
+
+        .sub_content>.inner {
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 80px;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .sub_title {
+            margin-bottom: 28px;
+            color: #111;
+            font-size: 32px;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+
+        .sub_placeholder {
+            min-height: 260px;
+            padding: 40px;
+            border: 1px dashed #ccd6dd;
+            border-radius: 8px;
+            background: #f8fafb;
+        }
+
+        .sub_tab {
+            overflow: hidden;
+            border-bottom: 1px solid #d9e0e4;
+        }
+
+        .sub_tab_inner {
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 80px;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .sub_tab_list {
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #d4d7db transparent;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .sub_tab_list::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .sub_tab_list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sub_tab_list::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            background: #e3e7eb;
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            .sub_tab_list {
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .sub_tab_list::-webkit-scrollbar {
+                display: none;
+                width: 0;
+                height: 0;
+            }
+        }
+
+        .sub_tab_list li {
+            flex: 0 0 auto;
+        }
+
+        .sub_tab_list a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 160px;
+            min-height: 64px;
+            padding: 0 28px;
+            border-bottom: 3px solid transparent;
+            background: transparent;
+            color: #444;
+            font-size: 17px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .sub_tab_list a.is-active,
+        .sub_tab_list a:hover,
+        .sub_tab_list a:focus-visible {
+            border-bottom-color: var(--color-primary);
+            color: var(--color-primary-dark);
+        }
+
+        @media (max-width: 1023px) {
+
+            .sub_visual .inner,
+            .sub_content>.inner,
+            .sub_tab_inner {
+                padding-inline: 20px;
+            }
+
+            .sub_tab_list a {
+                min-width: 140px;
+                min-height: 58px;
+                padding: 0 22px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sub_visual {
+                min-height: 300px;
+                padding: 96px 0 56px;
+            }
+
+            .sub_visual p {
+                font-size: 16px;
+            }
+
+            .sub_content {
+                padding: 56px 0 80px;
+            }
+
+            .sub_tab_list a {
+                min-width: 112px;
+                min-height: 52px;
+                padding: 0 16px;
+                font-size: 15px;
+            }
+
+            .sub_placeholder {
+                min-height: 220px;
+                padding: 24px;
+            }
+        }
+
+    </style>
+</head>
+
+<body class="pattern_sample">
+    <div id="wrap">
+        <header id="siteHeader" class="header">
+            <div class="header_inner">
+                <h1 class="logo">
+                    <a href="#" aria-label="홈으로 이동">
+                        <img src="../../resources/images/common/logo_header_dark.svg"
+                            data-light-src="../../resources/images/common/logo_header_dark.svg"
+                            data-dark-src="../../resources/images/common/logo_header_dark.svg" alt="" width="160"
+                            height="36">
+                        <span class="sr-only">사이트 로고</span>
+                    </a>
+                </h1>
+                <nav class="pc_nav" aria-label="주요 메뉴">
+                    <ul class="gnb_wrap">
+                        <li class="gnb_item">
+                            <a href="#"><span>기관소개</span></a>
+                            <ul class="gnb_2dep" aria-label="기관소개 하위 메뉴">
+                                <li class="item_02"><a href="#" target="_blank"><span>인사말</span></a></li>
+                                <li class="item_02"><a href="#"><span>연혁</span></a></li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>사업안내</span></a>
+                            <ul class="gnb_2dep" aria-label="사업안내 하위 메뉴">
+                                <li class="item_02"><a href="#"><span>주요사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>지원사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>신청안내</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>알림마당</span></a>
+                            <ul class="gnb_2dep" aria-label="알림마당 하위 메뉴">
+                                <li class="item_02"><a href="#"><span>공지사항</span></a></li>
+                                <li class="item_02"><a href="#"><span>보도자료</span></a></li>
+                                <li class="item_02"><a href="#"><span>자료실</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>고객지원</span></a>
+                            <ul class="gnb_2dep" aria-label="고객지원 하위 메뉴">
+                                <li class="item_02"><a href="#"><span>FAQ</span></a></li>
+                                <li class="item_02"><a href="#"><span>문의하기</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#" target="_blank"><span>새창열림</span></a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="right">
+                    <button type="button" class="site_search">통합검색</button>
+                    <a href="#" class="site_login">로그인</a>
+                    <!-- <div class="btn_tog01 btn_toggle">
+                    <a href="" class="">토글1</a>
+                    <div>
+                        <a href="#"><span>토글1</span></a>
+                        <a href="#"><span>토글1</span></a>
+                    </div>
+                </div> -->
+                    <div class="btn_tog02 btn_toggle">
+                        <a href="" class="">토글2</a>
+                        <div>
+                            <a href="#"><span>토글2</span></a>
+                            <a href="#"><span>토글2</span></a>
+                        </div>
+                    </div>
+                    <button type="button" class="mnav_open" aria-label="전체 메뉴 열기">
+                        <img src="../../resources/images/common/icon_menu_open.svg" alt="">
+                    </button>
+                </div>
+            </div>
+
+            <div id="m_nav" class="gnb_mobile" hidden>
+                <div class="mb_top">
+                    <a href="#" class="mb_logo" aria-label="홈으로 이동">
+                        <img src="../../resources/images/common/logo_header_dark.svg" alt="" width="146" height="32">
+                    </a>
+                    <div class="link">
+                        <a href="#">로그인</a>
+                        <a href="#">사이트맵</a>
+                    </div>
+                    <button type="button" class="gnb_close_btn"
+                        aria-label="전체 메뉴 닫기"><span></span><span></span></button>
+                </div>
+                <nav class="mb_nav" aria-label="모바일 주요 메뉴">
+                    <ul class="gnb_wrap">
+                        <li class="gnb_item">
+                            <a href="#"><span>기관소개</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#" target="_blank"><span>인사말</span></a></li>
+                                <li class="item_02"><a href="#"><span>연혁</span></a></li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>사업안내</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#"><span>주요사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>지원사업</span></a></li>
+                                <li class="item_02"><a href="#"><span>신청안내</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>알림마당</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#"><span>공지사항</span></a></li>
+                                <li class="item_02"><a href="#"><span>보도자료</span></a></li>
+                                <li class="item_02"><a href="#"><span>자료실</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#"><span>고객지원</span></a>
+                            <ul class="gnb_2dep" hidden>
+                                <li class="item_02"><a href="#"><span>FAQ</span></a></li>
+                                <li class="item_02"><a href="#"><span>문의하기</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb_item">
+                            <a href="#" target="_blank"><span>새창열림</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="sub_container">
+            <section class="sub_visual">
+                <div class="inner">
+                    <!-- 브레드크럼: LNB 패턴과 동일한 마크업 사용 -->
+                    <nav class="breadcrumb-wrap" aria-label="브레드크럼">
+                        <ul class="breadcrumb">
+                            <li class="home"><a href="#" class="txt">홈</a></li>
+                            <li><a href="#" class="txt">알림마당</a></li>
+                        </ul>
+                    </nav>
+                    <h2>탭 메뉴형</h2>
+                    <p>서브 비주얼 바로 아래에 가로 탭을 배치하는 패턴입니다.</p>
+                </div>
+            </section>
+
+            <nav class="sub_tab" aria-label="서브 메뉴">
+                <div class="sub_tab_inner">
+                    <ul class="sub_tab_list">
+                        <li><a href="#" class="is-active">전체</a></li>
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">보도자료</a></li>
+                        <li><a href="#">자료실</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <section class="sub_content">
+                <div class="inner">
+                    <h3 class="sub_title">본문 콘텐츠</h3>
+                    <div class="sub_body">
+                        <div class="sub_placeholder">웹 브라우저에서는 모바일크기로 줄이면 가로스크롤 나옴. 실제 모바일 기기에서는 스크롤모양 제거</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="inner">
+                <p class="f_slogan"><span>사이트 운영 문구 영역</span><span><strong>푸터 슬로건</strong> 자리</span></p>
+                <div class="f_bottom">
+                    <div class="f_policy"><a href="#"><strong>개인정보처리방침</strong></a><a href="#">이용약관</a></div>
+                    <div class="f_org">
+                        <div class="org_item"><strong class="org_logo">LOGO <span>기관명</span></strong>
+                            <address>[00000] 주소 영역을 입력합니다.</address>
+                        </div>
+                    </div>
+                    <p class="copy">Copyright(C) SITE NAME. All Rights Reserved.</p>
+                </div>
+            </div>
+            <button class="go_top active" type="button" aria-label="맨 위로 이동">TOP</button>
+        </footer>
+    </div>
+    <script>
+        $(document).ready(function () {
+            /* 탭 클릭 시 같은 탭 목록 안에서 active 이동 */
+            $(".sub_tab_list").on("click", "a", function (e) {
+                e.preventDefault();
+
+                var $tabList = $(this).closest(".sub_tab_list");
+                var $tabLinks = $tabList.find("a");
+                var $activeLink = $(this);
+
+                $tabLinks.removeClass("is-active");
+                $activeLink.addClass("is-active");
+            });
+        });
+    </script>
+</body>
+
+</html>

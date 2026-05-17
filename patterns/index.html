@@ -1,0 +1,240 @@
+﻿<!doctype html>
+<html lang="ko">
+<!--   패턴 목록/인덱스 페이지 -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <title>패턴</title>
+  <link rel="stylesheet" href="./sample/resources/css/common.css">
+  <link rel="stylesheet" href="./index.css">
+  <script src="./index.js" defer></script>
+</head>
+
+<body class="pattern_guide_body">
+  <div class="pattern_guide_wrap">
+    <aside class="pattern_guide_lnb" aria-label="패턴 목록">
+      <h1>Pattern Guide</h1>
+
+      <nav>
+        <h2>Header</h2>
+        <ul>
+          <li><a href="#headerBasic">기본 헤더</a></li>
+          <li><a href="#headerFullmenu">전체메뉴 헤더</a></li>
+          <li><a href="#header3">설명형 메가메뉴 헤더</a></li>
+          <li><a href="#header4">3뎁스 메가메뉴 헤더</a></li>
+        </ul>
+
+        <h2>Mobile Nav</h2>
+        <ul>
+          <li><a href="#mnavBasic">기본형 모바일 메뉴</a></li>
+          <li><a href="#mnavIntegrated">통합형 전체메뉴 헤더</a></li>
+        </ul>
+
+        <h2>Sub</h2>
+        <ul>
+          <li><a href="#subVisual">드롭다운 메뉴</a></li>
+          <li><a href="#subLnb">좌측 메뉴형</a></li>
+          <li><a href="#subTab">탭 메뉴형(모바일 스크롤)</a></li>
+          <li><a href="#subTab2">탭 메뉴형(모바일 드롭다운)</a></li>
+        </ul>
+
+        <h2>Board</h2>
+        <ul>
+          <li><a href="#boardList">게시판 목록</a></li>
+          <li><a href="#boardView">게시판 상세</a></li>
+          <li><a href="#galleryList">갤러리 목록</a></li>
+          <li><a href="#galleryView">갤러리 상세</a></li>
+        </ul>
+
+        <h2>Component</h2>
+        <ul>
+          <li><a href="#componentBasic">컴포넌트 모음</a></li>
+        </ul>
+
+      </nav>
+    </aside>
+
+    <main id="guideContent" class="pattern_guide_content" tabindex="-1">
+      <div class="pattern_guide_head">
+        <h2>Publishing Pattern Guide</h2>
+        <p>Figma MCP 작업 전 참고할 수 있는 헤더, 모바일 메뉴, 서브 페이지 기본 패턴 모음입니다. 각 예시 HTML의 복사 시작/끝 주석 안쪽은 실제 프로젝트 클래스 기준으로 작성되어 바로
+          붙여넣을 수 있습니다. index.css와 index.js는 패턴 목록 화면 전용입니다.</p>
+      </div>
+
+      <section class="pattern_guide_group" aria-labelledby="headerPatternTitle">
+        <h3 id="headerPatternTitle">Header</h3>
+
+        <article id="headerBasic" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Header 01</span>
+            <h4>기본 헤더</h4>
+            <p>로고, GNB, 로그인, 사이트맵, 모바일 메뉴를 포함한 가장 기본적인 헤더 구조입니다. 일반적인 기관/회사 사이트의 시작 템플릿으로 사용합니다.</p>
+          </div>
+          <a href="./sample/html/header/header01.html" class="pattern_preview_img" aria-label="기본 헤더 보기"><img src="./images/header01.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="headerFullmenu" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Header 02</span>
+            <h4>전체메뉴 헤더</h4>
+            <p>우측 유틸 영역과 전체메뉴 레이어를 포함한 헤더 패턴입니다. 메뉴 구조가 많거나 사이트맵 접근성이 중요한 사이트에 적합합니다.</p>
+          </div>
+          <a href="./sample/html/header/header02.html" class="pattern_preview_img" aria-label="전체메뉴 헤더 보기"><img src="./images/header02.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="header3" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Header 03</span>
+            <h4>설명형 메가메뉴 헤더</h4>
+            <p>PC에서 1뎁스 메뉴별로 좌측 설명 영역과 우측 2뎁스 목록이 함께 펼쳐지는 메가메뉴입니다. 섹션별 안내 문구를 함께 보여줘야 하는 정보형 사이트에 적합합니다.</p>
+          </div>
+          <a href="./sample/html/header/header03.html" class="pattern_preview_img" aria-label="설명형 2뎁스 메가메뉴 헤더 보기"><img src="./images/header03.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="header4" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Header 04</span>
+            <h4>3뎁스 메가메뉴 헤더</h4>
+            <p>좌측 강조 영역, 우측 2뎁스/3뎁스 목록, 배경 dim 처리를 포함한 확장형 메가메뉴입니다. 하위 메뉴가 깊고 사용자가 메뉴 구조를 한눈에 파악해야 하는 공공기관·대형 사이트에 적합합니다.</p>
+          </div>
+          <a href="./sample/html/header/header04.html" class="pattern_preview_img" aria-label="3뎁스 메가메뉴 헤더 보기"><img src="./images/header04.jpg" alt=""></a>
+        </article>
+
+      </section>
+
+      <section class="pattern_guide_group" aria-labelledby="mnavPatternTitle">
+        <h3 id="mnavPatternTitle">Mobile Nav</h3>
+
+        <article id="mnavBasic" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Mobile Nav 01</span>
+            <h4>기본형 모바일 메뉴</h4>
+            <p>모바일 메뉴 버튼 클릭 시 우측 슬라이드 패널이 열리고, 1뎁스/2뎁스 메뉴를 아코디언으로 탐색하는 기본형 모바일 내비게이션 패턴입니다.</p>
+          </div>
+          <a href="./sample/html/m_nav/mnav01.html" class="pattern_preview_img" aria-label="기본형 모바일 메뉴 보기"><img src="./images/mnav01.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="mnavIntegrated" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Mobile Nav 02</span>
+            <h4>통합형 전체메뉴 헤더</h4>
+            <p>PC에서는 전체메뉴 버튼 클릭 시 페이지형 메뉴가 열리고, 모바일에서는 동일한 전체메뉴 구조를 슬라이드 메뉴로 전환해 사용하는 통합형 헤더 패턴입니다.</p>
+          </div>
+          <a href="./sample/html/m_nav/mnav02.html" class="pattern_preview_img" aria-label="통합형 전체메뉴 헤더 보기"><img src="./images/mnav02.jpg" alt="">
+          </a>
+        </article>
+      </section>
+
+      <section class="pattern_guide_group" aria-labelledby="subPatternTitle">
+        <h3 id="subPatternTitle">Sub</h3>
+
+        <article id="subVisual" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Sub 01</span>
+            <h4>드롭다운 메뉴</h4>
+            <p>서브 비주얼 바로 아래에 1뎁스와 2뎁스 드롭다운 메뉴를 배치하는 패턴입니다.</p>
+          </div>
+          <a href="./sample/html/sub/drop_menu.html" class="pattern_preview_img" aria-label="서브 비주얼 기본형 보기"><img src="./images/drop.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="subLnb" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Sub 02</span>
+            <h4>좌측 메뉴형</h4>
+            <p>서브 비주얼 아래 좌측 사이드 메뉴와 본문 영역을 나누는 패턴입니다. 2depth 이상의 서브 메뉴가 필요한 정보형 페이지에 적합합니다.</p>
+          </div>
+          <a href="./sample/html/sub/lnb.html" class="pattern_preview_img" aria-label="좌측 메뉴형 보기"><img src="./images/lnb.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="subTab" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Sub 03</span>
+            <h4>탭 메뉴형(모바일 가로스크롤)</h4>
+            <p>서브 비주얼 바로 아래 가로 탭 메뉴를 배치하는 패턴입니다. 같은 성격의 콘텐츠를 분류해서 보여주는 게시판/안내 페이지에 사용합니다.</p>
+          </div>
+          <a href="./sample/html/sub/tab.html" class="pattern_preview_img" aria-label="탭 메뉴형 보기"><img src="./images/tab.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="subTab2" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Sub 03</span>
+            <h4>탭 메뉴형(모바일 드롭다운)</h4>
+            <p>서브 비주얼 바로 아래 가로 탭 메뉴를 배치하는 패턴입니다. 같은 성격의 콘텐츠를 분류해서 보여주는 게시판/안내 페이지에 사용합니다.</p>
+          </div>
+          <a href="./sample/html/sub/tab_mb_dropdown.html" class="pattern_preview_img" aria-label="탭 메뉴형 보기"><img src="./images/tab_dd.jpg" alt="">
+          </a>
+        </article>
+      </section>
+
+      <section class="pattern_guide_group" aria-labelledby="boardPatternTitle">
+        <h3 id="boardPatternTitle">Board</h3>
+
+        <article id="boardList" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Board 01</span>
+            <h4>게시판 목록</h4>
+            <p>검색, 목록, 첨부 표시, 페이징을 포함한 기본 게시판 목록 패턴입니다. 실제 페이지에는 board.css를 연결하고 필요한 행만 CMS 구조에 맞춰 교체합니다.</p>
+          </div>
+          <a href="./sample/html/board/list.html" class="pattern_preview_img" aria-label="게시판 목록 보기"><img src="./images/board_list.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="boardView" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Board 02</span>
+            <h4>게시판 상세</h4>
+            <p>상세 제목, 작성 정보, 본문, 첨부파일, 이전글/다음글, 버튼 영역으로 구성한 게시판 상세 패턴입니다.</p>
+          </div>
+          <a href="./sample/html/board/view.html" class="pattern_preview_img" aria-label="게시판 상세 보기"><img src="./images/board_view.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="galleryList" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Board 03</span>
+            <h4>갤러리 목록</h4>
+            <p>썸네일 카드, 게시물 정보, 검색, 페이징을 포함한 갤러리 게시판 목록 패턴입니다. 썸네일은 images/temp/ 플레이스홀더를 사용합니다.</p>
+          </div>
+          <a href="./sample/html/board/gal_list.html" class="pattern_preview_img" aria-label="갤러리 목록 보기"><img src="./images/gal_list.jpg" alt="">
+          </a>
+        </article>
+
+        <article id="galleryView" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Board 04</span>
+            <h4>갤러리 상세</h4>
+            <p>대표 이미지, 상세 본문, 첨부파일, 이전글/다음글을 포함한 갤러리 게시판 상세 패턴입니다.</p>
+          </div>
+          <a href="./sample/html/board/gal_view.html" class="pattern_preview_img" aria-label="갤러리 상세 보기"><img src="./images/gal_view.jpg" alt="">
+          </a>
+        </article>
+      </section>
+
+      <section class="pattern_guide_group" aria-labelledby="componentPatternTitle">
+        <h3 id="componentPatternTitle">Component</h3>
+
+        <article id="componentBasic" class="pattern_preview">
+          <div class="pattern_preview_text">
+            <span class="pattern_category">Component 01</span>
+            <h4>컴포넌트 모음</h4>
+            <p>components.css 기준의 버튼, 탭, 테이블, 리스트, 아코디언, 툴팁, 파일 업로드 마크업 예시입니다. 필요한 블록만 복사해 사용합니다.</p>
+          </div>
+          <a href="./sample/html/components/components.html" class="pattern_preview_img" aria-label="컴포넌트 모음 보기"><img src="./images/components.jpg" alt="">
+          </a>
+        </article>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

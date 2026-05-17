@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>Header Type 04 Pattern</title>
+    <link rel="stylesheet" href="../../resources/css/common.css">
+
+    <link rel="stylesheet" href="../../resources/css/sample.css">
+    <script src="../../resources/js/plugin/jquery-3.7.1.min.js"></script>
+
+    <!-- 이 페이지 전용 css -->
+    <style>
+        /********************************************************
+     * HEADER
+     ********************************************************/
+        .header {
+            --header-total: 100px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            height: var(--header-total);
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            transition: box-shadow 0.25s ease;
+        }
+
+        .header.hover,
+        .header.scrolled {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .pc_dim[hidden] {
+            display: none !important;
+        }
+
+        .pc_dim {
+            position: fixed;
+            inset: 0;
+            z-index: 990;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        /********************************************************
+     * HEADER - PC NAV
+     ********************************************************/
+        .header .header_inner {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 36px;
+            width: 100%;
+            height: var(--header-total);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
+            box-sizing: border-box;
+        }
+
+        .header .logo a,
+        .header .mb_logo {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            display: block;
+            width: 160px;
+            height: auto;
+            content: url("../../resources/images/common/logo_header_dark.svg");
+        }
+
+        .header .pc_nav {
+            flex: 1 1 auto;
+            display: flex;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .header .pc_nav .gnb_wrap {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: clamp(28px, 4vw, 62px);
+        }
+
+        .header .pc_nav .gnb_item {
+            position: relative;
+        }
+
+        .header .pc_nav .gnb_item>a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: var(--header-total);
+            padding: 0 2px;
+            color: #111;
+            font-size: 18px;
+            line-height: 1;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .header .pc_nav .gnb_item>a>span {
+            position: relative;
+            display: inline-block;
+        }
+
+        .header .pc_nav .gnb_item>a[target="_blank"]>span {
+            padding-right: 22px;
+        }
+
+        .header .pc_nav .gnb_item>a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 3px;
+            background: var(--color-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.2s ease;
+        }
+
+        .header .pc_nav .gnb_item.is-active>a::after,
+        .header .pc_nav .gnb_item:hover>a::after {
+            transform: scaleX(1);
+        }
+
+        .header .pc_nav [class~="2dep_wrap"] {
+            position: fixed;
+            top: var(--header-total);
+            left: 0;
+            right: 0;
+            z-index: 30;
+            display: flex;
+            align-items: flex-start;
+            gap: 84px;
+            min-height: 260px;
+            padding: 0 max(80px, calc((100vw - 1400px) / 2 + 80px));
+            background: #fff;
+            box-shadow: 0 24px 40px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-12px);
+            transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease;
+        }
+
+        /* PC 메뉴 2뎁스는 좌측 설명 영역 + 우측 2/3뎁스 목록으로 배치 */
+        .header .pc_nav .gnb_item.is-active>[class~="2dep_wrap"] {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .header .pc_nav .g_tit {
+            flex: 0 0 320px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: stretch;
+            padding-bottom: 50px;
+            overflow: visible;
+        }
+
+        .header .pc_nav .g_tit::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: calc(-1 * max(80px, calc((100vw - 1400px) / 2 + 80px)));
+            background: var(--color-primary);
+            border-radius: 0 0 80px 0;
+            z-index: 0;
+        }
+
+        .header .pc_nav .g_tit>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .pc_nav .g_tit strong {
+            display: block;
+            color: #fff;
+            font-size: 30px;
+            line-height: 1.25;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+
+        .header .pc_nav .g_tit p {
+            margin-top: 24px;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .header .pc_nav .gnb_2dep {
+            display: flex;
+            flex: 1 1 auto;
+            flex-wrap: wrap;
+            gap: 18px 24px;
+            padding: 42px 0 46px;
+            min-width: 0;
+        }
+
+        .header .pc_nav .gnb_2dep>li {
+            flex: 0 0 calc((100% - 72px) / 4);
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header .pc_nav .gnb_2dep a {
+            display: block;
+            padding: 12px 0;
+            border-radius: 0;
+            background: transparent;
+            color: #444;
+            font-size: 17px;
+            line-height: 1.35;
+            font-weight: 500;
+            text-align: left;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+
+        .header .pc_nav .gnb_2dep a[target="_blank"]>span,
+        .header .pc_nav .gnb_3dep a[target="_blank"]>span {
+            position: relative;
+            display: inline-block;
+            padding-right: 18px;
+        }
+
+        .header .pc_nav .gnb_2dep>li>a {
+            display: block;
+            position: relative;
+            padding: 16px 22px 12px 0;
+            border-top: 1px solid #dfdfdf;
+            border-bottom: 1px dashed #dfdfdf;
+            font-weight: 700;
+        }
+
+        .header .pc_nav .gnb_2dep>li>a::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background: url("../../resources/images/2dep_arrow.svg") center/contain no-repeat;
+            opacity: 1;
+            transform: translateY(-50%);
+        }
+
+        .header .pc_nav .gnb_2dep>li:not(.has-child)>a::after {
+            content: none;
+        }
+
+        .header .pc_nav .gnb_3dep {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 12px;
+            padding-right: 8px;
+        }
+
+        .header .pc_nav .gnb_3dep .item_03 {
+            min-width: 0;
+        }
+
+        .header .pc_nav .gnb_3dep a {
+            position: relative;
+            padding: 0 0 0 14px;
+            color: #777;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .header .pc_nav .gnb_3dep a::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 4px;
+            height: 4px;
+            margin-top: -2px;
+            border-radius: 50%;
+            background: #9aa0a6;
+            color: #9aa0a6;
+        }
+
+        .header .pc_nav .gnb_item>a[target="_blank"]>span::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: url("../../resources/images/blank.svg") center/contain no-repeat;
+            transform: translateY(-50%);
+        }
+
+        .header .pc_nav .gnb_2dep a[target="_blank"]>span::after,
+        .header .pc_nav .gnb_3dep a[target="_blank"]>span::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background: url("../../resources/images/blank_sg.svg") center/contain no-repeat;
+            transform: translateY(-50%);
+        }
+
+        .header .pc_nav .gnb_2dep a[target="_blank"]>span,
+        .header .pc_nav .gnb_3dep a[target="_blank"]>span {
+            padding-right: 18px;
+        }
+
+        .header .pc_nav .gnb_2dep a:hover,
+        .header .pc_nav .gnb_2dep a:focus-visible {
+            color: var(--color-primary-dark);
+            background: transparent;
+        }
+
+        .header .pc_nav .gnb_3dep a:hover,
+        .header .pc_nav .gnb_3dep a:focus-visible {
+            color: var(--color-primary-dark);
+        }
+
+        @media (max-width: 1279px) and (min-width: 1024px) {
+            .header .header_inner {
+                padding-inline: 40px;
+            }
+
+            .header .pc_nav .gnb_wrap {
+                gap: 32px;
+            }
+
+            .header .pc_nav [class~="2dep_wrap"] {
+                gap: 40px;
+                min-height: 240px;
+                padding: 0 40px;
+            }
+
+            .header .pc_nav .g_tit {
+                flex-basis: 260px;
+                padding: 24px 24px 24px 28px;
+            }
+
+            .header .pc_nav .g_tit strong {
+                font-size: 26px;
+            }
+
+            .header .pc_nav .g_tit p {
+                margin-top: 18px;
+                font-size: 16px;
+            }
+
+            .header .pc_nav .gnb_2dep {
+                gap: 14px 16px;
+                padding: 34px 0 38px;
+            }
+
+            .header .pc_nav .gnb_2dep>li {
+                flex-basis: calc((100% - 16px) / 2);
+            }
+
+            .header .pc_nav .gnb_2dep a {
+                font-size: 16px;
+            }
+
+            .header .pc_nav .gnb_2dep>li>a {
+                padding: 14px 22px 10px 0;
+            }
+
+            .header .pc_nav .gnb_2dep>li>a::after {
+                width: 15px;
+                height: 15px;
+            }
+
+            .header .pc_nav .gnb_3dep {
+                gap: 4px;
+                margin-top: 10px;
+            }
+
+            .header .pc_nav .gnb_3dep a {
+                font-size: 13px;
+            }
+        }
+
+        /********************************************************
+     * HEADER - RIGHT UTIL
+     ********************************************************/
+        .header .right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* 토글버튼 */
+        .header .right>.btn_toggle {
+            position: relative;
+        }
+
+        .header .right>.btn_toggle>a {
+            display: block;
+            position: relative;
+            padding: 10px 40px 10px 20px;
+            border-radius: 20px 20px 0 0;
+            border: 2px solid transparent;
+            transition: color 0.5s;
+            z-index: 1;
+            font-weight: 500;
+            color: #111;
+        }
+
+        .header .right>.btn_toggle>a:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            border-top: 7px solid #111;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            transform: translateY(-50%);
+            transition: all 0.3s;
+        }
+
+        .header .right>.btn_toggle.on>a:before {
+            transform: translateY(-50%) rotate(-180deg);
+            border-top: 7px solid #111;
+        }
+
+        .header .right>.btn_toggle>div {
+            position: absolute;
+            top: 46px;
+            left: 0;
+            width: 100%;
+            display: none;
+            padding: 10px 15px;
+            border: 2px solid #fff;
+            border-top: 0;
+            left: 0;
+            border-radius: 14px;
+            background: #fff;
+            transition: color 0.5s;
+            border: 1px solid #c6c6c6;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        .header .right>.btn_toggle.on>div {
+            display: block;
+        }
+
+        .header .right>.btn_toggle>div>a {
+            display: block;
+            font-size: 15px;
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .header .right>.btn_toggle>div>a:hover {
+            text-decoration: underline;
+        }
+
+        /* 토글2 스타일 */
+        .header .right>.btn_tog02>a {
+            color: #111;
+        }
+
+        .header .right>.btn_tog02.on>a {
+            background: #fff;
+            color: var(--color-primary);
+            font-weight: 600;
+            border-color: var(--color-primary);
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .header .right>.btn_tog02.on>a:before {
+            transform: translateY(-50%) rotate(-180deg);
+            border-top: 7px solid var(--color-primary);
+        }
+
+        .header .right>.btn_tog02>div {
+            position: absolute;
+            top: 46px;
+            left: 0;
+            width: 100%;
+            display: none;
+            padding: 10px 15px;
+            border: 2px solid var(--color-primary);
+            border-top: 0;
+            left: 0;
+            border-radius: 0 0 20px 20px;
+            background: #fff;
+            transition: color 0.5s;
+            z-index: 40;
+        }
+
+        .header .right>.site_search,
+        .header .right>.site_login,
+        .header .right>.mnav_open {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            min-height: 44px;
+            padding: 0 12px;
+            border-radius: 999px;
+            color: #111;
+            background: transparent;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .header .right>.site_search:hover,
+        .header .right>.site_login:hover,
+        .header .right>.mnav_open:hover {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        .header .right>.mnav_open {
+            display: none;
+            padding: 0;
+        }
+
+        .header .right>.mnav_open img {
+            width: 24px;
+            height: 24px;
+            filter: invert(1);
+        }
+
+        /********************************************************
+     * PC / 모바일 전환
+     ********************************************************/
+        @media (max-width: 1023px) {
+            .header {
+                height: var(--header-main, 64px);
+            }
+
+            .header::after {
+                display: none;
+            }
+
+            .header .pc_nav [class~="2dep_wrap"] {
+                display: none;
+            }
+
+            .header .header_inner {
+                padding-inline: 20px;
+                height: var(--header-main, 64px);
+            }
+
+            .header .pc_nav,
+            .header .right>.site_search,
+            .header .right>.site_login {
+                display: none;
+            }
+
+            .header .logo img {
+                width: 146px;
+            }
+
+            .header .right>.mnav_open {
+                display: inline-flex;
+            }
+        }
+
+        /********************************************************
+     * HEADER - MOBILE NAV
+     ********************************************************/
+        .header .gnb_mobile[hidden] {
+            display: none !important;
+        }
+
+        .header .gnb_mobile {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 100vw;
+            height: 100dvh;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .header .gnb_mobile.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .header .gnb_mobile>* {
+            width: min(520px, 100%);
+            background: #fff;
+            transform: translateX(100%);
+            transition: transform 0.35s ease;
+        }
+
+        .header .gnb_mobile.is-active>* {
+            transform: translateX(0);
+        }
+
+        .header .mb_top {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 76px 18px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header .mb_logo img {
+            width: 146px;
+            height: auto;
+        }
+
+        .header .gnb_close_btn {
+            position: absolute;
+            top: 14px;
+            right: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+        }
+
+        .header .gnb_close_btn span {
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            border-radius: 999px;
+            background: #111;
+        }
+
+        .header .gnb_close_btn span:first-child {
+            transform: rotate(45deg);
+        }
+
+        .header .gnb_close_btn span:last-child {
+            transform: rotate(-45deg);
+        }
+
+        .header .gnb_mobile .link {
+            display: flex;
+            flex: 0 0 100%;
+            gap: 12px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .header .mb_nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px 20px 40px;
+        }
+
+        .header .mb_nav .gnb_wrap {
+            display: block;
+        }
+
+        .header .mb_nav .gnb_item+.gnb_item {
+            border-top: 1px solid #eee;
+        }
+
+        .header .mb_nav .gnb_item.has-child>a {
+            position: relative;
+            padding-right: 18px;
+        }
+
+        .header .mb_nav .gnb_item.has-child>a::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 12px;
+            height: 12px;
+            border-right: 2px solid #111;
+            border-bottom: 2px solid #111;
+            transform: translateY(-50%) rotate(45deg);
+            transition: transform 0.2s ease;
+        }
+
+        .header .mb_nav .gnb_item.has-child>a.is-active::after {
+            transform: translateY(-50%) rotate(225deg);
+        }
+
+        .header .mb_nav .gnb_2dep {
+            position: static;
+            display: block;
+            width: auto;
+            min-width: 0;
+            height: 0;
+            overflow: hidden;
+            padding: 0 0 0 12px;
+            border-radius: 12px;
+            background: #f7f7f7;
+            box-shadow: none;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: none;
+            transition: height 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .header .mb_nav .gnb_2dep[hidden] {
+            display: none;
+        }
+
+        .header .mb_nav .gnb_2dep a {
+            display: block;
+            min-height: 44px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .header .mb_nav .gnb_item>a {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+            min-height: 62px;
+            padding: 0 4px;
+            color: #111;
+            font-size: 20px;
+            font-weight: 800;
+            text-align: left;
+        }
+
+        .header .mb_nav .gnb_item>a>span,
+        .header .mb_nav .item_02>a>span {
+            display: inline-block;
+            position: relative;
+        }
+
+        .header .mb_nav .gnb_item>a[target="_blank"]>span,
+        .header .mb_nav .item_02>a[target="_blank"]>span {
+            padding-right: 18px;
+        }
+
+        .header .mb_nav .gnb_item>a[target="_blank"]>span::after,
+        .header .mb_nav .item_02>a[target="_blank"]>span::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background: url("../../resources/images/blank_sg.svg") center/contain no-repeat;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body class="pattern_sample">
+    <header id="siteHeader" class="header">
+        <div class="header_inner">
+            <h1 class="logo">
+                <a href="#" aria-label="홈으로 이동">
+                    <img src="../../resources/images/common/logo_header_light.svg"
+                        data-light-src="../../resources/images/common/logo_header_light.svg"
+                        data-dark-src="../../resources/images/common/logo_header_dark.svg" alt="" width="160"
+                        height="36">
+                    <span class="sr-only">사이트 로고</span>
+                </a>
+            </h1>
+            <nav class="pc_nav">
+                <ul class="gnb_wrap">
+                    <li class="gnb_item">
+                        <a href="#"><span>공간소개</span></a>
+                        <div class="2dep_wrap">
+                            <div class="g_tit">
+                                <strong>공간소개</strong>
+                                <p>공간소개에 대한 설명글입니다.</p>
+                            </div>
+                            <ul class="gnb_2dep">
+                                <li class="item_02"><a href="#" target="_blank"><span>소개</span></a>
+                                <li class="item_02"><a href="#"><span>시설안내</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#" target="_blank"><span>시설안내</span></a></li>
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#"><span>프로그램·전시</span></a>
+                        <div class="2dep_wrap">
+                            <div class="g_tit">
+                                <strong>프로그램·전시</strong>
+                                <p>프로그램·전시에 대한 설명글입니다.</p>
+                            </div>
+                            <ul class="gnb_2dep">
+                                <li class="item_02"><a href="#"><span>소개</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>소개</span></a></li>
+                                        <li class="item_03"><a href="#"><span>소개</span></a></li>
+                                        <li class="item_03"><a href="#"><span>소개</span></a></li>
+                                        <li class="item_03"><a href="#"><span>소개</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>시설안내</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#"><span>대관안내</span></a>
+                        <div class="2dep_wrap">
+                            <div class="g_tit">
+                                <strong>대관안내</strong>
+                                <p>대관안내에 대한 설명글입니다.</p>
+                            </div>
+                            <ul class="gnb_2dep">
+                                <li class="item_02"><a href="#"><span>소개</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>소개</span></a></li>
+                                        <li class="item_03"><a href="#"><span>소개</span></a></li>
+                                        <li class="item_03"><a href="#"><span>소개</span></a></li>
+                                        <li class="item_03"><a href="#"><span>소개</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>시설안내</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                        <li class="item_03"><a href="#"><span>시설안내</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="item_02"><a href="#"><span>오시는 길</span></a>
+                                    <ul class="gnb_3dep">
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                        <li class="item_03"><a href="#"><span>오시는 길</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#"><span>하위메뉴없음</span></a>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#" target="_blank"><span>새창열림메뉴</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="right">
+                <!-- <button type="button" class="site_search">통합검색</button> -->
+                <a href="#" class="site_login">로그인</a>
+                <!-- <div class="btn_tog01 btn_toggle">
+                        <a href="" class="">토글1</a>
+                        <div>
+                          <a href="#"><span>토글1</span></a>
+                          <a href="#"><span>토글1</span></a>
+                        </div>
+                    </div> -->
+                <div class="btn_tog02 btn_toggle">
+                    <a href="" class="">토글2</a>
+                    <div>
+                        <a href="#"><span>토글2</span></a>
+                        <a href="#"><span>토글2</span></a>
+                    </div>
+                </div>
+
+                <button type="button" class="mnav_open" aria-label="전체 메뉴 열기">
+                    <img src="../../resources/images/common/icon_menu_open.svg" alt="">
+                </button>
+            </div>
+        </div>
+
+        <div id="m_nav" class="gnb_mobile" hidden>
+            <div class="mb_top">
+                <a href="#" class="mb_logo" aria-label="홈으로 이동">
+                    <img src="../../resources/images/common/logo_header_dark.svg" alt="" width="146" height="32">
+                </a>
+                <div class="link">
+                    <a href="#">메인</a>
+                    <a href="#">로그인</a>
+                </div>
+                <button type="button" class="gnb_close_btn" aria-label="전체 메뉴 닫기"><span></span><span></span></button>
+            </div>
+
+            <nav class="mb_nav" aria-label="모바일 주요 메뉴">
+                <ul class="gnb_wrap">
+                    <li class="gnb_item">
+                        <a href="#">공간소개</a>
+                        <ul class="gnb_2dep" hidden>
+                            <li class="item_02"><a href="#"><span>소개</span></a></li>
+                            <li class="item_02"><a href="#"><span>시설안내</span></a></li>
+                            <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#">프로그램·전시</a>
+                        <ul class="gnb_2dep" hidden>
+                            <li class="item_02"><a href="#"><span>프로그램 현황</span></a></li>
+                            <li class="item_02"><a href="#"><span>오시는 길</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#">대관안내</a>
+                        <ul class="gnb_2dep" hidden>
+                            <li class="item_02"><a href="#"><span>대관규정</span></a></li>
+                            <li class="item_02"><a href="#"><span>대관신청</span></a></li>
+                            <li class="item_02"><a href="#"><span>대관공고</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_item">
+                        <a href="#">공지사항</a>
+                        <ul class="gnb_2dep" hidden>
+                            <li class="item_02"><a href="#"><span>공지사항</span></a></li>
+                            <li class="item_02"><a href="#"><span>자료실</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="pc_dim" hidden></div><!-- gnb 배경도 필요 -->
+   
+
+    <!-- 미리보기용 콘텐츠 영역입니다. 실제 작업 시에는 본문 퍼블리싱용 섹션으로 교체합니다. -->
+    <main id="container" class="sample_content">
+        <div class="inner">
+            <h2 class="sample_title">3뎁스 메가메뉴 헤더</h2>
+            <div class="sample_placeholder">좌측 강조 영역, 우측 2뎁스/3뎁스 목록, 배경 dim 처리를 포함한 확장형 메가메뉴입니다. <br>하위 메뉴가 깊고 사용자가 메뉴
+                구조를 한눈에 파악해야 하는 공공기관·대형 사이트에 적합합니다.</div>
+        </div>
+    </main>
+
+    <!-- 이 페이지 전용 js -->
+    <script>
+        $(document).ready(function () {
+            /********************************************************
+             * HEADER SCRIPT
+             ********************************************************/
+            /********************************************************
+             * UTIL TOGGLES
+             ********************************************************/
+            var $toggles = $(".btn_toggle");
+            var $toggleBtns = $toggles.children("a");
+
+            function closeToggles($targets) {
+                $targets.removeClass("on");
+            }
+
+            function toggleMenu(e) {
+                e.preventDefault();
+
+                var $toggle = $(this).parent(".btn_toggle");
+                var isOpen = $toggle.hasClass("on");
+
+                closeToggles($toggles.not($toggle));
+                $toggle.toggleClass("on", !isOpen);
+            }
+
+            $toggleBtns.on("click", toggleMenu);
+
+            $("html").on("click focusin", function (e) {
+                if (!$toggles.has(e.target).length) {
+                    closeToggles($toggles);
+                }
+            });
+
+            /********************************************************
+             * PC MENU
+             ********************************************************/
+            var $header = $("#siteHeader");
+            var $pcDim = $(".pc_dim");
+            var $pcItems = $(".pc_nav .gnb_item");
+            var $pcLinks = $(".pc_nav .gnb_item > a");
+            var $pcDepthItems = $(".pc_nav .gnb_2dep > li");
+
+            // 2뎁스 안에 3뎁스가 있으면 하위 상태 클래스를 붙인다.
+            $pcDepthItems.each(function () {
+                var $depthItem = $(this);
+
+                if ($depthItem.children(".gnb_3dep").length) {
+                    $depthItem.addClass("has-child");
+                }
+            });
+
+            function closePcMenu() {
+                $pcItems.removeClass("is-active");
+                $header.removeClass("hover");
+                $pcDim.prop("hidden", true);
+            }
+
+            $pcLinks.on("focusin mouseover", function () {
+                var $item = $(this).parent(".gnb_item");
+                var hasDepthMenu = $item.children("[class~='2dep_wrap']").length > 0;
+                var isBlankLink = $(this).attr("target") === "_blank";
+
+                if (!hasDepthMenu || isBlankLink) {
+                    closePcMenu();
+                    return;
+                }
+
+                $item.addClass("is-active").siblings(".gnb_item").removeClass("is-active");
+                $header.addClass("hover");
+                $pcDim.prop("hidden", false);
+            });
+
+            $header.on("mouseleave", closePcMenu);
+            $pcDim.on("click", closePcMenu);
+
+            $("html").on("mouseover focusin", function (e) {
+                if (!$header.has(e.target).length) {
+                    closePcMenu();
+                }
+            });
+
+            /********************************************************
+             * MOBILE MENU
+             ********************************************************/
+            var $mobileNav = $("#m_nav");
+            var $mobileCloseBtn = $(".gnb_close_btn");
+            var mobileNavTimer = null;
+
+            function openMobileNav() {
+                clearTimeout(mobileNavTimer);
+                $mobileNav.prop("hidden", false);
+                $("html").addClass("is-mobile-nav-open");
+                requestAnimationFrame(function () {
+                    $mobileNav.addClass("is-active");
+                });
+            }
+
+            function closeMobileNav() {
+                clearTimeout(mobileNavTimer);
+                $mobileNav.removeClass("is-active");
+                $("html").removeClass("is-mobile-nav-open");
+                mobileNavTimer = setTimeout(function () {
+                    $mobileNav.prop("hidden", true);
+                }, 350);
+            }
+
+            $(".mnav_open").first().on("click", openMobileNav);
+            $mobileCloseBtn.on("click", closeMobileNav);
+
+            $(".mb_nav .gnb_item").each(function () {
+                if ($(this).children(".gnb_2dep").length) {
+                    $(this).addClass("has-child");
+                }
+            });
+
+            /********************************************************
+             * MOBILE DEPTH TOGGLE
+             ********************************************************/
+            function closeMobileDepth($items) {
+                $items.children("a").removeClass("is-active");
+                $items.find(".gnb_2dep").each(function () {
+                    var $panel = $(this);
+                    if (!$panel.prop("hidden")) {
+                        $panel.height($panel[0].scrollHeight);
+                        requestAnimationFrame(function () {
+                            $panel.height(0);
+                        });
+                        setTimeout(function () {
+                            $panel.prop("hidden", true).height("");
+                        }, 300);
+                    }
+                });
+            }
+
+            /********************************************************
+             * MOBILE ITEM TOGGLE
+             ********************************************************/
+            $(".mb_nav").on("click", ".gnb_item > a", function (e) {
+                var $link = $(this);
+                var $item = $link.closest(".gnb_item");
+                var $panel = $link.next(".gnb_2dep");
+                var isExpanded = $link.hasClass("is-active");
+
+                if (!$panel.length) {
+                    return;
+                }
+
+                e.preventDefault();
+
+                closeMobileDepth($item.siblings(".gnb_item"));
+
+                if (isExpanded) {
+                    closeMobileDepth($item);
+                    return;
+                }
+
+                $link.addClass("is-active");
+                $panel.prop("hidden", false).height(0);
+                requestAnimationFrame(function () {
+                    $panel.height($panel[0].scrollHeight);
+                });
+                setTimeout(function () {
+                    if ($link.hasClass("is-active")) {
+                        $panel.height("auto");
+                    }
+                }, 300);
+            });
+
+            /********************************************************
+             * MOBILE CLOSE BEHAVIOR
+             ********************************************************/
+            $(document).on("click", function (e) {
+                if ($(e.target).is($mobileNav) && $mobileNav.hasClass("is-active")) {
+                    closeMobileNav();
+                }
+            }).on("keydown", function (e) {
+                if (e.key === "Escape" && $mobileNav.hasClass("is-active")) {
+                    closeMobileNav();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
